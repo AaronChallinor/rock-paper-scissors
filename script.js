@@ -1,7 +1,33 @@
 //TOP Rock Paper Scissors. Currently played via the browser console. 
+document.addEventListener("DOMContentLoaded", function() {
+
 const selections = ["rock","paper","scissors"];
 let playerScore = 0;
 let computerScore = 0;
+let button1 = document.getElementById("button1");
+let button2 = document.getElementById("button2");
+let button3 = document.getElementById("button3");
+let buttonSelection = "blank";
+button1.addEventListener("click",updateButtonSelection);
+button2.addEventListener("click",updateButtonSelection);
+button3.addEventListener("click",updateButtonSelection);
+let resultsSection = document.getElementById("results");
+let scoresSection = document.getElementById("scores");
+
+
+
+
+
+function updateButtonSelection(){
+
+    buttonSelection = this.innerText;
+    
+    
+    game();
+
+
+}
+
 
 function computerPlay(){
     return selections[Math.floor(Math.random()*3)];
@@ -11,7 +37,7 @@ function computerPlay(){
 function playARound(playerSelection, computerSelection){
 
 
-    playerSelection = prompt("Make a selection...").toLowerCase();
+    playerSelection = buttonSelection;
     computerSelection = computerPlay();
  
     if(playerSelection === computerSelection){
@@ -69,24 +95,50 @@ function playARound(playerSelection, computerSelection){
 
 function game(){
 
-    for(i = 0;i <= 4;i++){
+    //for(i = 0;i <= 4;i++){
+        if(playerScore !=5 && computerScore !=5){
+
         computerPlay();
-        console.log(playARound())
-  
-    }
-    console.log(`Your final score is ${playerScore}.`);
-    console.log(`The computer's final score is ${computerScore}.`);
-    if(playerScore > computerScore){
-        console.log('You did it! Congratulations');}
+        //console.log(playARound())
+        resultsSection.innerText = `${playARound()} 
+        
+        Player Score: ${playerScore} 
+        Computer Score: ${computerScore}`
+        }
 
-    else if (playerScore === computerScore){
-            console.log("It's a tie. Shake hands and try again!")}
+        else {  resultsSection.innerText = 
+            
+        `THE END!
 
-    else if(playerScore < computerScore){
-                console.log('Too bad, you lost. Try again next time!');}
-    }
+         Your final score is ${playerScore}.
+         The computer's final score is ${computerScore}.
+         
+         `
+        
+         if(playerScore > computerScore){
+        resultsSection.append(`You Win!`)
+         }
+         
+         else {resultsSection.append(`Better Luck Next Time!`)
+
+         }
+        };
+
+
+
+    // if(playerScore > computerScore){
+    //     console.log('You did it! Congratulations');}
+
+    // else if (playerScore === computerScore){
+    //         console.log("It's a tie. Shake hands and try again!")}
+
+    // else if(playerScore < computerScore){
+    //             console.log('Too bad, you lost. Try again next time!');}
+    
 
     
 
-game();
+
+
+}});
 
