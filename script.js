@@ -1,7 +1,7 @@
-//TOP Rock Paper Scissors. Currently played via the browser console. 
+//TOP ROCK PAPER SCISSORS. Currently played via the browser console. 
 document.addEventListener("DOMContentLoaded", function() {
 
-const selections = ["rock","paper","scissors"];
+const selections = ["ROCK","PAPER","SCISSORS"];
 let playerScore = 0;
 let computerScore = 0;
 let button1 = document.getElementById("button1");
@@ -41,49 +41,59 @@ function playARound(playerSelection, computerSelection){
     computerSelection = computerPlay();
  
     if(playerSelection === computerSelection){
+        scoresSection.append(`- `);
         return(`You played ${playerSelection} and the computer played ${computerSelection}... It's a tie!`);
         
+
+        
     }
 
-    else if (playerSelection === "rock" && computerSelection === "scissors"){
+    else if (playerSelection === "ROCK" && computerSelection === "SCISSORS"){
         playerScore++; //If this is placed after the return statement this it doesn't work. The variable becomes "unreachable".
-        return(`You played ${playerSelection} and the computer played ${computerSelection}... You Win!`);
+        scoresSection.append(`o `);
+        return(`You played ${playerSelection} and the computer played ${computerSelection}... Nice!`);
         
     }
 
-    else if (playerSelection === "rock" && computerSelection === "paper"){
-        computerScore++; 
-        return(`You played ${playerSelection} and the computer played ${computerSelection}... You Lose :(`);
-        
-    }
-
-    else if (playerSelection === "paper" && computerSelection === "rock"){
-        playerScore++;
-        return(`You played ${playerSelection} and the computer played ${computerSelection}... You Win!`);
-        
-    }
-
-    else if (playerSelection === "paper" && computerSelection === "scissors"){
+    else if (playerSelection === "ROCK" && computerSelection === "PAPER"){
         computerScore++;
-        return(`You played ${playerSelection} and the computer played ${computerSelection}... You Lose :(`);
+        scoresSection.append(`x `); 
+        return(`You played ${playerSelection} and the computer played ${computerSelection}... Ouch!`);
         
     }
 
-
-    else if (playerSelection === "scissors" && computerSelection === "paper"){
+    else if (playerSelection === "PAPER" && computerSelection === "ROCK"){
         playerScore++;
-        return(`You played ${playerSelection} and the computer played ${computerSelection}... You Win!`);
+        scoresSection.append(`o `);
+        return(`You played ${playerSelection} and the computer played ${computerSelection}... Nice!`);
         
     }
 
-    else if (playerSelection === "scissors" && computerSelection === "rock"){
+    else if (playerSelection === "PAPER" && computerSelection === "SCISSORS"){
         computerScore++;
-        return(`You played ${playerSelection} and the computer played ${computerSelection}... You Lose :(`);
+        scoresSection.append(`x `);
+        return(`You played ${playerSelection} and the computer played ${computerSelection}... Ouch!`);
+        
+    }
+
+
+    else if (playerSelection === "SCISSORS" && computerSelection === "PAPER"){
+        playerScore++;
+        scoresSection.append(`o `);
+        return(`You played ${playerSelection} and the computer played ${computerSelection}... Nice!`);
+        
+    }
+
+    else if (playerSelection === "SCISSORS" && computerSelection === "ROCK"){
+        computerScore++;
+        scoresSection.append(`x `);
+        return(`You played ${playerSelection} and the computer played ${computerSelection}... Ouch!`);
         
     }
 
 
     else{
+        scoresSection.append(`? `);
         return(`You can't bring a ${playerSelection} to this fight!`)
         
         
@@ -124,19 +134,35 @@ function game(){
          }
         };
 
+        //Execute the function every 2 seconds.
+        let intervalId = window.setInterval(function(){
+            if(playerScore ===5 || computerScore ===5){
+
+                resultsSection.innerText = 
+            
+                `THE END!
+        
+                 Your final score is ${playerScore}.
+                 The computer's final score is ${computerScore}.
+                 
+                 `
+                 //Reloads the page after 7 seconds.
+                 setTimeout("location.reload(true);", 7000);
+
+                 if(playerScore > computerScore){
+                resultsSection.append(`You Win!`)
+                 }
+                 
+                 else {resultsSection.append(`Better Luck Next Time!`)
+        
+                 }
 
 
-    // if(playerScore > computerScore){
-    //     console.log('You did it! Congratulations');}
 
-    // else if (playerScore === computerScore){
-    //         console.log("It's a tie. Shake hands and try again!")}
+            }
+          }, 2000);
 
-    // else if(playerScore < computerScore){
-    //             console.log('Too bad, you lost. Try again next time!');}
-    
 
-    
 
 
 
