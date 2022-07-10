@@ -144,6 +144,7 @@ function game(){
         
                  Your final score is ${playerScore}.
                  The computer's final score is ${computerScore}.
+                 Restarting in 7 seconds...
                  
                  `
                  //Reloads the page after 7 seconds.
